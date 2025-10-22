@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #f5edde;
+  color: #3e5c37;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #dcd7c9;
+}
+
+.logo img {
+  height: 50px; /* אפשר לשנות לפי גודל הלוגו */
+  width: auto;
+}
+
+.nav a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  color: #3e5c37; /* צבע הטקסט */
+  font-weight: 500;
+}
+
+.nav a:hover {
+  color: #6a7c58; /* גוון ירוק קצת יותר בהיר לאפקט hover */
+  transition: 0.3s;
+}

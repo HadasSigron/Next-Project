@@ -1,0 +1,8 @@
+.footer {
+  background-color: #f5edde;
+  color: #3e5c37;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-weight: 500;
+  border-top: 1px solid #dcd7c9; /* קו עדין מעל ה-footer */
+}

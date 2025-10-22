@@ -1,0 +1,8 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 180px));
+  gap: 50px;
+  padding: 2rem;
+
+  justify-content: center; /* מרכז את הכרטיסים אופקית */
+}

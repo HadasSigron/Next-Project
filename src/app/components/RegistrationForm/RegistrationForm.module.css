@@ -1,0 +1,68 @@
+
+.form {
+  background-color: transparent; /* אין רקע */
+  padding: 0; /* אין padding גדול */
+  border-radius: 0; /* אין מסגרת */
+  max-width: 400px;
+  margin: 40px auto 80px auto; /* מרווח עליון מתחת לכרטיסים, ותחתון כדי שה-footer לא יתנגש */
+  display: flex;
+  flex-direction: column;
+}
+
+.form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #3e5c37;
+}
+
+.label {
+  margin-top: 10px;
+  font-weight: 500;
+  color: #3e5c37;
+}
+
+.input {
+  padding: 8px 12px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+.input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 6px 10px;
+  background-color: #f5edde; /* צבע רקע כמו האתר */
+}
+
+.input:focus {
+  outline: none;
+  border-color: #3e5c37;
+  box-shadow: 0 0 5px rgba(62, 92, 55, 0.2);
+}
+
+.error {
+  color: #c00;
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
+
+.submitButton {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #3e5c37;
+  color: #f5edde;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.submitButton {
+  background-color: #3e5c37;
+  color: #f5edde;
+  transition: 0.3s;
+}
+.submitButton:hover {
+  background-color: #2e4628;
+}
