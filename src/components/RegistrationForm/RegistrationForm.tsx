@@ -1,8 +1,11 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import styles from "./RegistrationForm.module.css";
 
 export default function RegistrationForm() {
+  const router = useRouter();
+
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -74,7 +77,7 @@ export default function RegistrationForm() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const fullNameError = validateFullName(fullName);
@@ -90,12 +93,17 @@ export default function RegistrationForm() {
     });
 
     if (!fullNameError && !phoneError && !emailError && !birthDateError) {
-      alert("Registration successful!");
-      // Reset form
+      // כאן אפשר לקרוא ל-API אמיתי אם תרצי:
+      // await fetch("/api/register", { method: "POST", body: JSON.stringify({ fullName, phone, email, birthDate }) });
+
+      // איפוס הטופס
       setFullName("");
       setPhone("");
       setEmail("");
       setBirthDate("");
+
+      // ניווט לעמוד המוצרים
+      router.push("/products");
     }
   };
 

@@ -1,12 +1,5 @@
 import styles from "./ProductCard.module.css";
-
-type Product = {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  image: string;
-};
+import {Product}from "@/types/product";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
