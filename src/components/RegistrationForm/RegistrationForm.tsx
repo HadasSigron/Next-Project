@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./RegistrationForm.module.css";
 
+// ייבוא הקומפוננטה של הצגת גודל חלון
+import WindowSizeDisplay from "@/components/WindowSizeDisplay/WindowSizeDisplay";
 export default function RegistrationForm() {
   const router = useRouter();
 
@@ -18,7 +20,10 @@ export default function RegistrationForm() {
     birthDate: "",
   });
 
-  // Validation functions
+  // ✅ state להצגת/הסתרת קומפוננטת חלון
+  const [showWindowSize, setShowWindowSize] = useState(false);
+
+  // ---------- Validation functions ----------
   const validateFullName = (value: string) => {
     const words = value.trim().split(" ");
     if (words.length < 2) return "Full name must contain at least 2 words";
@@ -50,7 +55,7 @@ export default function RegistrationForm() {
     return "";
   };
 
-  // Handlers
+  // ---------- Handlers ----------
   const handleFullName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFullName(e.target.value);
     setErrors((prev) => ({
@@ -93,67 +98,79 @@ export default function RegistrationForm() {
     });
 
     if (!fullNameError && !phoneError && !emailError && !birthDateError) {
-      // כאן אפשר לקרוא ל-API אמיתי אם תרצי:
-      // await fetch("/api/register", { method: "POST", body: JSON.stringify({ fullName, phone, email, birthDate }) });
-
       // איפוס הטופס
       setFullName("");
       setPhone("");
       setEmail("");
       setBirthDate("");
 
-      // ניווט לעמוד המוצרים
+      // ניווט לעמוד אחר
       router.push("/products");
     }
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <h2>Registration Form</h2>
+    <div>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <h2>Registration Form</h2>
 
-      <label className={styles.label}>Full Name</label>
-      <input
-        className={styles.input}
-        type="text"
-        value={fullName}
-        onChange={handleFullName}
-      />
-      {errors.fullName && (
-        <span className={styles.error}>{errors.fullName}</span>
-      )}
+        <label className={styles.label}>Full Name</label>
+        <input
+          className={styles.input}
+          type="text"
+          value={fullName}
+          onChange={handleFullName}
+        />
+        {errors.fullName && (
+          <span className={styles.error}>{errors.fullName}</span>
+        )}
 
-      <label className={styles.label}>Phone</label>
-      <input
-        className={styles.input}
-        type="text"
-        value={phone}
-        onChange={handlePhone}
-      />
-      {errors.phone && <span className={styles.error}>{errors.phone}</span>}
+        <label className={styles.label}>Phone</label>
+        <input
+          className={styles.input}
+          type="text"
+          value={phone}
+          onChange={handlePhone}
+        />
+        {errors.phone && <span className={styles.error}>{errors.phone}</span>}
 
-      <label className={styles.label}>Email</label>
-      <input
-        className={styles.input}
-        type="email"
-        value={email}
-        onChange={handleEmail}
-      />
-      {errors.email && <span className={styles.error}>{errors.email}</span>}
+        <label className={styles.label}>Email</label>
+        <input
+          className={styles.input}
+          type="email"
+          value={email}
+          onChange={handleEmail}
+        />
+        {errors.email && <span className={styles.error}>{errors.email}</span>}
 
-      <label className={styles.label}>Birth Date</label>
-      <input
-        className={styles.input}
-        type="date"
-        value={birthDate}
-        onChange={handleBirthDate}
-      />
-      {errors.birthDate && (
-        <span className={styles.error}>{errors.birthDate}</span>
-      )}
+        <label className={styles.label}>Birth Date</label>
+        <input
+          className={styles.input}
+          type="date"
+          value={birthDate}
+          onChange={handleBirthDate}
+        />
+        {errors.birthDate && (
+          <span className={styles.error}>{errors.birthDate}</span>
+        )}
 
-      <button className={styles.submitButton} type="submit">
-        Register
-      </button>
-    </form>
+        <button className={styles.submitButton} type="submit">
+          Register
+        </button>
+      </form>
+
+      {/* 🔘 כפתור הצגה/הסתרה */}
+      <div style={{ textAlign: "center", marginTop: "20px" }}>
+        <button
+          className={styles.submitButton}
+          onClick={() => setShowWindowSize((prev) => !prev)}
+        >
+          {showWindowSize ? "הסתר גודל חלון" : "הצג גודל חלון"}
+        </button>
+      </div>
+
+      {/* ✅ הצגה מותנית של הקומפוננטה */}
+      {showWindowSize && <WindowSizeDisplay />}
+    </div>
   );
 }
